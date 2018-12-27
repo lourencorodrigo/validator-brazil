@@ -1,7 +1,7 @@
 {
   "name": "brazilian-validator",
   "version": "0.0.1",
-  "description": "",
+  "description": "validacao de cpf e cnpj",
   "main": "lib/index.js",
   "types": "src/index.d.ts",
   "scripts": {
@@ -13,9 +13,15 @@
     "type": "git",
     "url": "git+https://github.com/lourencorodrigo/brazilian-validator.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cpf",
+    "cnpj",
+    "validacao",
+    "brazil",
+    "validation"
+  ],
+  "author": "Rodrigo Lourenço <rsilvape@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lourencorodrigo/brazilian-validator/issues"
   },
