@@ -19,12 +19,11 @@
     "url": "https://github.com/lourencorodrigo/brazilian-validator/issues"
   },
   "homepage": "https://github.com/lourencorodrigo/brazilian-validator#readme",
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "^7.2.2",
     "babel-loader": "^8.0.4",
     "path": "^0.12.7",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2"
-  },
-  "devDependencies": {}
+  }
 }
