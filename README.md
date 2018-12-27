@@ -2,6 +2,8 @@
 
 Este módulo permite a validação de CPF e CNPJ. Documentos unicamente brasileiros.
 
+[![npm version](https://badge.fury.io/js/validator-brazil.svg)](https://badge.fury.io/js/validator-brazil)
+
 ## Getting started
 
 #### Install with NPM
