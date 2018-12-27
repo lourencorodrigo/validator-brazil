@@ -1,6 +1,6 @@
 {
-  "name": "brazilian-validator",
-  "version": "0.0.1",
+  "name": "validator-brazil",
+  "version": "1.0.0",
   "description": "validacao de cpf e cnpj",
   "main": "lib/index.js",
   "types": "src/index.d.ts",
