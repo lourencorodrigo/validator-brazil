@@ -1,11 +1,12 @@
 {
   "name": "brazilian-validator-teste",
-  "version": "1.0.9",
+  "version": "1.0.16",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -20,15 +21,10 @@
   "homepage": "https://github.com/lourencorodrigo/brazilian-validator#readme",
   "dependencies": {
     "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3",
     "babel-loader": "^8.0.4",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-preset-env": "^1.7.0",
     "path": "^0.12.7",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2"
   },
-  "devDependencies": {
-    "babel-plugin-add-module-exports": "^1.0.0"
-  }
+  "devDependencies": {}
 }

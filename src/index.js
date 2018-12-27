@@ -1,1 +1,3 @@
-export const name = "rodrigo";
+const name = "rodrigo";
+
+export default name;

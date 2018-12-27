@@ -1,4 +1,4 @@
 {
-  "plugins": ["transform-es2015-modules-commonjs", "add-module-exports"],
-  "presets": [["@babel/preset-env", { "modules": "commonjs" }]]
+  "presets": [],
+  "plugins": []
 }
