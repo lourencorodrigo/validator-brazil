@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "src/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack --config webpack.config.js",
     "prepublish": "npm run build"
   },
@@ -28,9 +28,22 @@
   "homepage": "https://github.com/lourencorodrigo/brazilian-validator#readme",
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
+    "jest": "^23.6.0",
     "path": "^0.12.7",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
+    }
   }
 }
