@@ -81,3 +81,9 @@ export const isCpf = cpf => {
   if (rev != parseInt(cpf.charAt(10))) return false;
   return true;
 };
+
+export const isCep = cep => {
+  cep = cep.replace(regex, "");
+  const cepRegex = /^[0-9]{8}$/g;
+  return cepRegex.test(cep);
+}
