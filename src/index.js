@@ -1,5 +1,7 @@
+const regex = /[\.\-\/]+/g;
+
 export const isCnpj = cnpj => {
-  cnpj = cnpj.replace(/[^\d]+/g, "");
+  cnpj = cnpj.replace(regex, "");
 
   if (cnpj == "") return false;
 
@@ -46,7 +48,8 @@ export const isCnpj = cnpj => {
 };
 
 export const isCpf = cpf => {
-  cpf = cpf.replace(/[^\d]+/g, "");
+  cpf = cpf.replace(regex, "");
+
   if (cpf == "") return false;
 
   if (
