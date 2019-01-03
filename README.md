@@ -20,18 +20,43 @@ $ yarn add validator-brazil
 
 #### How to use with ES6
 
+#### CPF
+
 ```js
-import { isCnpj, isCpf } from "validator-brazil";
+import { isCpf } from "validator-brazil";
 
 // No points or hyphens
-console.log(isCnpj("54334068000136")); // true
-console.log(isCnpj("00111222000100")); // false
 console.log(isCpf("29018170097")); // false
 console.log(isCpf("12312345600")); // false
 
 // With points or hyphens
-console.log(isCnpj("54.334.068/0001-36")); // true
 console.log(isCpf("123.123.456-00")); // false
+```
+
+#### CNPJ
+
+```js
+import { isCnpj, isCpf, isCep } from "validator-brazil";
+
+// No points or hyphens
+console.log(isCnpj("54334068000136")); // true
+console.log(isCnpj("00111222000100")); // false
+
+// With points or hyphens
+console.log(isCnpj("54.334.068/0001-36")); // true
+```
+
+#### CEP
+
+```js
+import { isCep } from "validator-brazil";
+
+// No points or hyphens
+console.log(isCep("43710130")); // true
+console.log(isCep("5471013423")); // false
+
+// With points or hyphens
+console.log(isCep("43710-130")); // true
 ```
 
 #### How to use with ES5
