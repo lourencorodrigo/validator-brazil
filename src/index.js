@@ -1,6 +1,6 @@
-const regex = /[\.\-\/]+/g;
+var regex = /[\.\-\/]+/g;
 
-export const isCnpj = cnpj => {
+module.exports.isCnpj = function(cnpj) {
   cnpj = cnpj.replace(regex, "");
 
   if (cnpj == "") return false;
@@ -21,23 +21,23 @@ export const isCnpj = cnpj => {
   )
     return false;
 
-  let size = cnpj.length - 2;
-  let numbers = cnpj.substring(0, size);
-  const digits = cnpj.substring(size);
-  let sum = 0;
-  let pos = size - 7;
-  for (let i = size; i >= 1; i--) {
+  var size = cnpj.length - 2;
+  var numbers = cnpj.substring(0, size);
+  var digits = cnpj.substring(size);
+  var sum = 0;
+  var pos = size - 7;
+  for (var i = size; i >= 1; i--) {
     sum += numbers.charAt(size - i) * pos--;
     if (pos < 2) pos = 9;
   }
-  let result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
+  var result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
   if (result != digits.charAt(0)) return false;
 
   size = size + 1;
   numbers = cnpj.substring(0, size);
   sum = 0;
   pos = size - 7;
-  for (let i = size; i >= 1; i--) {
+  for (var i = size; i >= 1; i--) {
     sum += numbers.charAt(size - i) * pos--;
     if (pos < 2) pos = 9;
   }
@@ -47,7 +47,7 @@ export const isCnpj = cnpj => {
   return true;
 };
 
-export const isCpf = cpf => {
+module.exports.isCpf = function(cpf) {
   cpf = cpf.replace(regex, "");
 
   if (cpf == "") return false;
@@ -67,23 +67,23 @@ export const isCpf = cpf => {
   )
     return false;
 
-  let add = 0;
-  for (let i = 0; i < 9; i++) add += parseInt(cpf.charAt(i)) * (10 - i);
-  let rev = 11 - (add % 11);
+  var add = 0;
+  for (var i = 0; i < 9; i++) add += parseInt(cpf.charAt(i)) * (10 - i);
+  var rev = 11 - (add % 11);
   if (rev == 10 || rev == 11) rev = 0;
   if (rev != parseInt(cpf.charAt(9))) return false;
 
   add = 0;
 
-  for (let i = 0; i < 10; i++) add += parseInt(cpf.charAt(i)) * (11 - i);
+  for (var i = 0; i < 10; i++) add += parseInt(cpf.charAt(i)) * (11 - i);
   rev = 11 - (add % 11);
   if (rev == 10 || rev == 11) rev = 0;
   if (rev != parseInt(cpf.charAt(10))) return false;
   return true;
 };
 
-export const isCep = cep => {
+module.exports.isCep = function(cep) {
   cep = cep.replace(regex, "");
-  const cepRegex = /^[0-9]{8}$/g;
+  var cepRegex = /^[1-9]{1}[0-9]{7}$/g;
   return cepRegex.test(cep);
-}
+};
