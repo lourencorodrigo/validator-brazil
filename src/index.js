@@ -84,6 +84,6 @@ module.exports.isCpf = function(cpf) {
 
 module.exports.isCep = function(cep) {
   cep = cep.replace(regex, "");
-  var cepRegex = /^[1-9]{1}[0-9]{7}$/g;
+  var cepRegex = /^[0-9]{8}$/g;
   return cepRegex.test(cep);
 };

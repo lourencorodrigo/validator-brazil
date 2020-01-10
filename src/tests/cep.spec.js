@@ -5,8 +5,8 @@ describe("cep validation", () => {
     expect(isCep("14710130")).toEqual(true);
   });
 
-  it("should return false to invalid cep with 0 in the initial", () => {
-    expect(isCep("04710130")).toEqual(false);
+  it("should return true to invalid cep with 0 in the initial", () => {
+    expect(isCep("04710130")).toEqual(true)
   });
 
   it("should return true to valid cep with hyphen", () => {
