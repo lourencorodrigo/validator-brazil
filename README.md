@@ -1,6 +1,6 @@
 # validator-brazil
 
-With this module, you can validate the CPF, CNPJ and CEP numbers. Documents only Brazilian.
+With this module, you can validate the CPF, CNPJ and CEP numbers. Documents only Brazilian. Teste
 
 [![npm version](https://badge.fury.io/js/validator-brazil.svg)](https://badge.fury.io/js/validator-brazil)
 
