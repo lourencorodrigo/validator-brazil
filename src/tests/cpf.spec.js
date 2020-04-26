@@ -1,4 +1,4 @@
-import { isCpf } from "../index";
+const isCpf = require("../index").isCpf;
 
 describe("cpf validation", () => {
   it("should return true to valid cpf wythout hyphen and points", () => {
