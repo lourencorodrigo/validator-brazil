@@ -18,7 +18,7 @@ $ npm install validator-brazil --save
 $ yarn add validator-brazil
 ```
 
-#### How to use with ES6
+## How to use with ES6
 
 #### CPF
 
