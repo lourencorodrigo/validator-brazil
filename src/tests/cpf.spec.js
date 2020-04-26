@@ -30,4 +30,14 @@ describe("cpf validation", () => {
       expect(cpf.validate(cpf.generate())).toBeTruthy();
     });
   });
+
+  describe('format', () => {
+    it('should formt the cpf 1', () => {
+      expect(cpf.format('11122233300')).toEqual('111.222.333-00');
+    });
+
+    it('should formt the cpf 2', () => {
+      expect(cpf.format('22233344400')).toEqual('222.333.444-00');
+    });
+  });
 });

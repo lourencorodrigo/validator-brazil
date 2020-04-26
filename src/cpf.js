@@ -1,7 +1,7 @@
 var utils = require('./utils');
 
 function validate(cpf) {
-  cpf = cpf.replace(utils.replace_regex, "");
+  cpf = cpf.replace(utils.regex_replace, "");
 
   if (
     cpf.length != 11 ||
@@ -40,7 +40,12 @@ function generate() {
   return base + d1 + d2;
 }
 
+function format(cpf) {
+  return utils.format("cpf")(cpf);
+}
+
 module.exports = {
+  format,
   validate,
   generate,
 };

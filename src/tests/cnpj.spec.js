@@ -30,4 +30,14 @@ describe("cnpj", () => {
       expect(cnpj.validate(cnpj.generate())).toBeTruthy();
     });
   });
+
+  describe('format', () => {
+    it('should format the cnpj 1', () => {
+      expect(cnpj.format('00111222000100')).toEqual('00.111.222/0001-00');
+    });
+
+    it('should format the cnpj 2', () => {
+      expect(cnpj.format('11222333000212')).toEqual('11.222.333/0002-12');
+    });
+  });
 });

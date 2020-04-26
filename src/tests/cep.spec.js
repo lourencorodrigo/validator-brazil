@@ -22,4 +22,14 @@ describe("cep", () => {
       expect(cep.validate("5471012023")).toBeFalsy()
     });
   });
+
+  describe('format', () => {
+    it('should format the cep 1', () => {
+      expect(cep.format('00111222')).toEqual('00111-222');
+    });
+
+    it('should format the cep 2', () => {
+      expect(cep.format('11222333')).toEqual('11222-333');
+    });
+  });
 });
