@@ -1,4 +1,4 @@
-import { isCep } from "../index";
+const isCep = require("../index").isCep;
 
 describe("cep validation", () => {
   it("should return true to valid cep without hyphen", () => {
