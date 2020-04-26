@@ -11,6 +11,6 @@ function format(cep) {
 }
 
 module.exports = {
-  format,
-  validate,
+  format: format,
+  validate: validate,
 };

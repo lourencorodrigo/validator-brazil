@@ -39,5 +39,10 @@ describe("cnpj", () => {
     it('should format the cnpj 2', () => {
       expect(cnpj.format('11222333000212')).toEqual('11.222.333/0002-12');
     });
+
+    it ('should valid generate format', () => {
+      const regex = /^[\d]{2}\.[\d]{3}\.[\d]{3}\/[\d]{4}\-[\d]{2}$/g;
+      expect(regex.test(cnpj.generate())).toBeTruthy();
+    });
   });
 });

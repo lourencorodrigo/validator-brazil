@@ -20,33 +20,33 @@ $ yarn add validator-brazil
 
 #### How to use with ES6
 
-#### CPF
+## CPF
 
 ```js
-import { isCpf } from "validator-brazil";
+import { cpf } from "validator-brazil";
 
 // No points or hyphens
-isCpf("29018170097"); // false
-isCpf("12312345600"); // false
+cpf.validate("29018170097"); // false
+cpf.validate("12312345600"); // false
 
 // With points or hyphens
-isCpf("123.123.456-00"); // false
+cpf.validate("123.123.456-00"); // false
 ```
 
-#### CNPJ
+## CNPJ
 
 ```js
-import { isCnpj, isCpf, isCep } from "validator-brazil";
+import { cnpj } from "validator-brazil";
 
 // No points or hyphens
-isCnpj("54334068000136"); // true
-isCnpj("00111222000100"); // false
+cnpj.validate("54334068000136"); // true
+cnpj.validate("00111222000100"); // false
 
 // With points or hyphens
-isCnpj("54.334.068/0001-36"); // true
+cnpj.validate("54.334.068/0001-36"); // true
 ```
 
-#### CEP
+## CEP
 
 ```js
 import { isCep } from "validator-brazil";
@@ -59,7 +59,7 @@ isCep("5471013423"); // false
 isCep("43710-130"); // true
 ```
 
-#### How to use with ES5
+## How to use with ES5
 
 ```js
 const validator = require("validator-brazil");
@@ -74,3 +74,7 @@ validator.isCpf("12312345600"); // false
 validator.isCnpj("54.334.068/0001-36"); // true
 validator.isCpf("123.123.456-00"); // false
 ```
+
+### License
+
+validator-brazil is [MIT licensed](./LICENSE).

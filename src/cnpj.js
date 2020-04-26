@@ -1,6 +1,6 @@
 var utils = require("./utils");
 
-function validate(cnpj) {
+function validate_cnpj(cnpj) {
   cnpj = cnpj.replace(utils.regex_replace, "");
 
   if (cnpj.length != 14) return false;
@@ -45,20 +45,24 @@ function validate(cnpj) {
   return true;
 }
 
-function generate() {
+function format_cnpj(cnpj) {
+  return utils.format("cnpj")(cnpj);
+}
+
+function generate_cnpj(format) {
+  var format = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
   var base = utils.random_base(8);
   var body = base + "0001";
   var d1 = utils.digit("cnpj")("0" + body);
   var d2 = utils.digit("cnpj")(body + d1);
-  return body + d1 + d2;
-}
 
-function format(cnpj) {
-  return utils.format("cnpj")(cnpj);
+  var cnpj = body + d1 + d2;
+  return format ? format_cnpj(cnpj) : cnpj;
 }
 
 module.exports = {
-  format,
-  validate,
-  generate,
+  format: format_cnpj,
+  validate: validate_cnpj,
+  generate: generate_cnpj,
 };

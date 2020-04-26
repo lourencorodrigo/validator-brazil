@@ -29,6 +29,11 @@ describe("cpf validation", () => {
       expect(cpf.validate(cpf.generate())).toBeTruthy();
       expect(cpf.validate(cpf.generate())).toBeTruthy();
     });
+
+    it ('should valid generate format', () => {
+      const regex = /^[\d]{3}\.[\d]{3}.[\d]{3}-[\d]{2}$/g;
+      expect(regex.test(cpf.generate())).toBeTruthy();
+    });
   });
 
   describe('format', () => {

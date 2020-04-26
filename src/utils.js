@@ -55,10 +55,10 @@ function digit(type) {
 }
 
 module.exports = {
-  format,
-  random_base,
-  regex_replace,
-  regex_cnpj,
-  regex_cpf,
-  digit,
+  format: format,
+  random_base: random_base,
+  regex_replace: regex_replace,
+  regex_cnpj: regex_cnpj,
+  regex_cpf: regex_cpf,
+  digit: digit,
 };

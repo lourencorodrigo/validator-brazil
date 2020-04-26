@@ -1,6 +1,6 @@
 var utils = require('./utils');
 
-function validate(cpf) {
+function validate_cpf(cpf) {
   cpf = cpf.replace(utils.regex_replace, "");
 
   if (
@@ -33,19 +33,23 @@ function validate(cpf) {
   return true;
 }
 
-function generate() {
-  var base = utils.random_base(9);
-  var d1 = utils.digit("cpf1")(base);
-  var d2 = utils.digit("cpf2")(base + d1);
-  return base + d1 + d2;
-}
-
-function format(cpf) {
+function format_cpf(cpf) {
   return utils.format("cpf")(cpf);
 }
 
+function generate_cpf(format) {
+  var format = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+  var base = utils.random_base(9);
+  var d1 = utils.digit("cpf1")(base);
+  var d2 = utils.digit("cpf2")(base + d1);
+
+  var cpf = base + d1 + d2;
+  return format ? format_cpf(cpf) : cpf;
+}
+
 module.exports = {
-  format,
-  validate,
-  generate,
+  format: format_cpf,
+  validate: validate_cpf,
+  generate: generate_cpf,
 };

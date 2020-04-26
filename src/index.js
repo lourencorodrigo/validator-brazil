@@ -3,7 +3,7 @@ var cpf = require("./cpf");
 var cep = require("./cep");
 
 module.exports = {
-  cnpj,
-  cep,
-  cpf,
+  cnpj: cnpj,
+  cep: cep,
+  cpf: cpf,
 };
