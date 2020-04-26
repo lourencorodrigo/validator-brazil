@@ -59,7 +59,7 @@ isCep("5471013423"); // false
 isCep("43710-130"); // true
 ```
 
-#### How to use with ES5
+## How to use with ES5
 
 ```js
 const validator = require("validator-brazil");
