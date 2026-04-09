@@ -1,6 +1,8 @@
 # validator-brazil
 
-With this module, you can validate the CPF, CNPJ and CEP numbers. Documents only Brazilian.
+Validate Brazilian CPF, CNPJ and CEP. Lightweight, zero dependencies, written in TypeScript.
+
+Supports the **new alphanumeric CNPJ** format (IN RFB 2.229/2024), effective from July 2026.
 
 [![npm version](https://badge.fury.io/js/validator-brazil.svg)](https://badge.fury.io/js/validator-brazil)
 
@@ -9,7 +11,7 @@ With this module, you can validate the CPF, CNPJ and CEP numbers. Documents only
 #### Install with NPM
 
 ```
-$ npm install validator-brazil --save
+$ npm install validator-brazil
 ```
 
 #### Install with Yarn
@@ -18,59 +20,77 @@ $ npm install validator-brazil --save
 $ yarn add validator-brazil
 ```
 
-## How to use with ES6
+## Usage
 
-#### CPF
+### ES Modules
 
-```js
-import { isCpf } from "validator-brazil";
-
-// No points or hyphens
-isCpf("29018170097"); // false
-isCpf("12312345600"); // false
-
-// With points or hyphens
-isCpf("123.123.456-00"); // false
+```ts
+import { isCpf, isCnpj, isCep } from "validator-brazil";
 ```
 
-#### CNPJ
+### CommonJS
 
 ```js
-import { isCnpj, isCpf, isCep } from "validator-brazil";
-
-// No points or hyphens
-isCnpj("54334068000136"); // true
-isCnpj("00111222000100"); // false
-
-// With points or hyphens
-isCnpj("54.334.068/0001-36"); // true
+const { isCpf, isCnpj, isCep } = require("validator-brazil");
 ```
 
-#### CEP
+## API
 
-```js
-import { isCep } from "validator-brazil";
+### `isCpf(cpf: string): boolean`
 
-// No points or hyphens
-isCep("43710130"); // true
-isCep("5471013423"); // false
+Validates a Brazilian CPF (Cadastro de Pessoas Fisicas). Accepts input with or without mask.
 
-// With points or hyphens
-isCep("43710-130"); // true
+```ts
+isCpf("14552586017");       // true
+isCpf("145.525.860-17");   // true
+isCpf("12312345600");       // false
+isCpf("123.123.456-00");   // false
 ```
 
-## How to use with ES5
+### `isCnpj(cnpj: string): boolean`
 
-```js
-const validator = require("validator-brazil");
+Validates a Brazilian CNPJ (Cadastro Nacional da Pessoa Juridica). Accepts input with or without mask, both traditional numeric and the new alphanumeric format. Case insensitive.
 
-// No points or hyphens
-validator.isCnpj("54334068000136"); // true
-validator.isCnpj("00111222000100"); // false
-validator.isCpf("29018170097"); // true
-validator.isCpf("12312345600"); // false
+#### Traditional (numeric)
 
-// With points or hyphens
-validator.isCnpj("54.334.068/0001-36"); // true
-validator.isCpf("123.123.456-00"); // false
+```ts
+isCnpj("54334068000136");         // true
+isCnpj("54.334.068/0001-36");    // true
+isCnpj("00111222000100");         // false
 ```
+
+#### Alphanumeric (new format - July 2026)
+
+```ts
+isCnpj("12ABC34501DE35");         // true
+isCnpj("12.ABC.345/01DE-35");    // true
+isCnpj("Y0W9NJBN000176");         // true
+isCnpj("Y0.W9N.JBN/0001-76");   // true
+isCnpj("12abc34501de35");         // true (case insensitive)
+```
+
+### `isCep(cep: string): boolean`
+
+Validates a Brazilian CEP (Codigo de Enderecamento Postal). Accepts input with or without hyphen.
+
+```ts
+isCep("43710130");    // true
+isCep("43710-130");   // true
+isCep("5471013423");  // false
+```
+
+## Alphanumeric CNPJ
+
+Starting July 2026, the Brazilian Federal Revenue Service (Receita Federal) will issue CNPJs containing letters (A-Z) in addition to digits. The format remains 14 characters:
+
+| Positions | Content | Allowed characters |
+|-----------|---------|-------------------|
+| 1-8       | Root    | `A-Z`, `0-9`      |
+| 9-12      | Order   | `A-Z`, `0-9`      |
+| 13-14     | Check digits | `0-9`        |
+
+Existing numeric CNPJs remain valid and unchanged. This library handles both formats transparently.
+
+## License
+
+MIT
