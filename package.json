@@ -2,9 +2,14 @@
   "name": "validator-brazil",
   "version": "1.2.4",
   "description": "validacao de cpf e cnpj",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
     "test": "jest"
   },
   "repository": {
@@ -26,15 +31,16 @@
   },
   "homepage": "https://github.com/lourencorodrigo/brazilian-validator#readme",
   "devDependencies": {
-    "jest": "^25.4.0"
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.2",
+    "typescript": "^5.8.3"
   },
   "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
-    ],
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
-    }
+      "<rootDir>/src/**/*.spec.ts"
+    ]
   }
 }

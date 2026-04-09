@@ -1,4 +1,4 @@
-const isCnpj = require("../index").isCnpj;
+import { isCnpj } from "../index";
 
 describe("cnpj validation", () => {
   it("should return true to valid cnpj without hyphen and points", () => {
