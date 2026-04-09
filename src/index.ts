@@ -1,17 +1,12 @@
 const STRIP_REGEX = /[.\-/]+/g;
 
-const INVALID_CNPJ = new Set([
-  "00000000000000",
-  "11111111111111",
-  "22222222222222",
-  "33333333333333",
-  "44444444444444",
-  "55555555555555",
-  "66666666666666",
-  "77777777777777",
-  "88888888888888",
-  "99999999999999",
-]);
+const CNPJ_FORMAT = /^[A-Z0-9]{12}\d{2}$/;
+const CNPJ_WEIGHTS_1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+const CNPJ_WEIGHTS_2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+function charValue(c: string): number {
+  return c.charCodeAt(0) - 48;
+}
 
 const INVALID_CPF = new Set([
   "00000000000",
@@ -27,43 +22,33 @@ const INVALID_CPF = new Set([
 ]);
 
 /**
+ * Validates both traditional (numeric) and new alphanumeric CNPJ format.
+ * Alphanumeric CNPJ: positions 1-12 accept [A-Z0-9], positions 13-14 are numeric check digits.
+ * Check digit calculation uses Modulo 11 with ASCII-48 character conversion (SERPRO spec).
  * @param cnpj Cadastro Nacional da Pessoa Jurídica
  */
 export function isCnpj(cnpj: string): boolean {
-  cnpj = cnpj.replace(STRIP_REGEX, "");
+  cnpj = cnpj.replace(STRIP_REGEX, "").toUpperCase();
 
-  if (cnpj === "" || cnpj.length !== 14 || INVALID_CNPJ.has(cnpj)) {
+  if (!CNPJ_FORMAT.test(cnpj) || new Set(cnpj).size === 1) {
     return false;
   }
 
-  let size = cnpj.length - 2;
-  let numbers = cnpj.substring(0, size);
-  const digits = cnpj.substring(size);
+  const base = cnpj.substring(0, 12);
   let sum = 0;
-  let pos = size - 7;
-
-  for (let i = size; i >= 1; i--) {
-    sum += Number(numbers.charAt(size - i)) * pos--;
-    if (pos < 2) pos = 9;
+  for (let i = 0; i < 12; i++) {
+    sum += charValue(base.charAt(i)) * CNPJ_WEIGHTS_1[i];
   }
+  const dv1 = sum % 11 < 2 ? 0 : 11 - (sum % 11);
 
-  let result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-  if (result !== Number(digits.charAt(0))) return false;
-
-  size = size + 1;
-  numbers = cnpj.substring(0, size);
+  const baseWithDv1 = base + String(dv1);
   sum = 0;
-  pos = size - 7;
-
-  for (let i = size; i >= 1; i--) {
-    sum += Number(numbers.charAt(size - i)) * pos--;
-    if (pos < 2) pos = 9;
+  for (let i = 0; i < 13; i++) {
+    sum += charValue(baseWithDv1.charAt(i)) * CNPJ_WEIGHTS_2[i];
   }
+  const dv2 = sum % 11 < 2 ? 0 : 11 - (sum % 11);
 
-  result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-  if (result !== Number(digits.charAt(1))) return false;
-
-  return true;
+  return cnpj.substring(12) === `${dv1}${dv2}`;
 }
 
 /**
