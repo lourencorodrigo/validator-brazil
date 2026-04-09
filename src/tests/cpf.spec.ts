@@ -1,7 +1,7 @@
-const isCpf = require("../index").isCpf;
+import { isCpf } from "../index";
 
 describe("cpf validation", () => {
-  it("should return true to valid cpf wythout hyphen and points", () => {
+  it("should return true to valid cpf without hyphen and points", () => {
     expect(isCpf("14552586017")).toBeTruthy();
   });
 
@@ -13,7 +13,7 @@ describe("cpf validation", () => {
     expect(isCpf("14552586017a")).toBeFalsy();
   });
 
-  it("should return false to invalid cpf wythout hyphen and points", () => {
+  it("should return false to invalid cpf without hyphen and points", () => {
     expect(isCpf("00011122233")).toBeFalsy();
   });
 

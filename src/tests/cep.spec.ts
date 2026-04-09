@@ -1,23 +1,23 @@
-const isCep = require("../index").isCep;
+import { isCep } from "../index";
 
 describe("cep validation", () => {
   it("should return true to valid cep without hyphen", () => {
     expect(isCep("14710130")).toBeTruthy();
   });
 
-  it("should return true to invalid cep with 0 in the initial", () => {
+  it("should return true to valid cep with 0 in the initial", () => {
     expect(isCep("04710130")).toBeTruthy();
   });
 
-  it("should return true to valid cep WITH hyphen", () => {
+  it("should return true to valid cep with hyphen", () => {
     expect(isCep("54710-130")).toBeTruthy();
   });
 
-  it("should return true to valid cep WITHOUT hyphen", () => {
+  it("should return true to valid cep without hyphen", () => {
     expect(isCep("54710130")).toBeTruthy();
   });
 
   it("should return false to invalid cep", () => {
-    expect(isCep("5471012023")).toBeFalsy()
+    expect(isCep("5471012023")).toBeFalsy();
   });
 });
